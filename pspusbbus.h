@@ -15,6 +15,8 @@
 extern "C" {
 #endif
 
+#define PSP_USBBUS_DRIVERNAME          "USBBusDriver"
+
 /** USB driver interface */
 struct UsbInterface
 {

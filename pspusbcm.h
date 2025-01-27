@@ -1,4 +1,7 @@
 
+/* module main params %s %d: on start up? */
+
+
 #ifndef USBPSPCM_H
 #define USBPSPCM_H
 
@@ -82,6 +85,7 @@ enum PspUsbCmError{
     PSP_USBPSPCM_ERROR_RESET_END  = 0x8024340B,  // reset end
     PSP_USBPSPCM_ERROR_CLOSED     = 0x8024340C,  // communication end
 };
+
 
 
 #ifdef __cplusplus

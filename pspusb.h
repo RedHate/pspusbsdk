@@ -17,7 +17,6 @@ extern "C" {
 
 
 //driver names
-#define PSP_USBBUS_DRIVERNAME          "USBBusDriver"
 #define PSP_USBSTORAGE_DRIVERNAME      "USBStor_Driver"
 #define PSP_USBSTORAGE_PID				0x1C8
 
@@ -26,50 +25,60 @@ extern "C" {
 #define PSP_USB_CONNECTION_ESTABLISHED	0x002
 
 
-/* Device codes */
-#define PSP_USB_DEVICE_USB           	0x30  /* USB bus driver */
-#define PSP_USB_DEVICE_PSPCM         	0x34  /* USB "PSP" communication driver */
+// Device codes
+enum PspUsbDeviceID{
+    PSP_USB_DEVICE_USB           	= 0x30,  // USB bus driver
+    PSP_USB_DEVICE_PSPCM         	= 0x34,  // USB "PSP" communication driver
+};
 
-/* usb state activation */
-#define PSP_USB_ACT_MASK             	0x0F00
-#define PSP_USB_DEACTIVATED          	0x0100
-#define PSP_USB_ACTIVATED            	0x0200
+// usb state activation
+enum PspUsbStateActivation{
+    PSP_USB_ACT_MASK             	= 0x0F00,
+    PSP_USB_DEACTIVATED          	= 0x0100,
+    PSP_USB_ACTIVATED            	= 0x0200,
+};
 
-/* usb cable state */
-#define PSP_USB_CONN_MASK            	0x00F0
-#define PSP_USB_DISCONNECTED         	0x0010
-#define PSP_USB_CONNECTED            	0x0020
+// usb cable state
+enum PspUsbCableState{
+    PSP_USB_CONN_MASK            	= 0x00F0,
+    PSP_USB_DISCONNECTED         	= 0x0010,
+    PSP_USB_CONNECTED            	= 0x0020,
+};
 
-/* usb state */
-#define PSP_USB_STATE_MASK           	0x000F
-#define PSP_USB_DEFAULT              	0x0001
-#define PSP_USB_CONFIGURED           	0x0002
-#define PSP_USB_SUSPENDED            	0x0004
+// usb state
+enum PspUsbState{
+    PSP_USB_STATE_MASK           	= 0x000F,
+    PSP_USB_DEFAULT              	= 0x0001,
+    PSP_USB_CONFIGURED           	= 0x0002,
+    PSP_USB_SUSPENDED            	= 0x0004,
+};
 
-/* usb bus driver errors */
-#define PSP_USB_ERROR_OK         		0x00000000 /* no error */
-#define PSP_USB_ERROR_ALREADY    		0x80243001 /* already processed */
-#define PSP_USB_ERROR_INVAL      		0x80243002 /* invalid argument */
-#define PSP_USB_ERROR_NOSPC      		0x80243003 /* no space */
-#define PSP_USB_ERROR_NOMEM      		0x80243004 /* no memory */
-#define PSP_USB_ERROR_NOENT      		0x80243005 /* plugin failure */
-#define PSP_USB_ERROR_INPROGRESS 		0x80243006 /* in progress */
-#define PSP_USB_ERROR_NOTAVAIL   		0x80243007 /* not available */
-#define PSP_USB_ERROR_TIMEOUT    		0x80243008 /* timed out */
-#define PSP_USB_ERROR_CANCELED   		0x80243009 /* canceled */
+// usb bus driver errors
+enum PspUsbError{
+    PSP_USB_ERROR_OK         		= 0x00000000, // no error
+    PSP_USB_ERROR_ALREADY    		= 0x80243001, // already processed
+    PSP_USB_ERROR_INVAL      		= 0x80243002, // invalid argument
+    PSP_USB_ERROR_NOSPC      		= 0x80243003, // no space
+    PSP_USB_ERROR_NOMEM      		= 0x80243004, // no memory
+    PSP_USB_ERROR_NOENT      		= 0x80243005, // plugin failure
+    PSP_USB_ERROR_INPROGRESS 		= 0x80243006, // in progress
+    PSP_USB_ERROR_NOTAVAIL   		= 0x80243007, // not available
+    PSP_USB_ERROR_TIMEOUT    		= 0x80243008, // timed out
+    PSP_USB_ERROR_CANCELED   		= 0x80243009, // canceled
+};
 
-/* Plug state of driver */
-#define PSP_USB_PLUGIN          		0x1      /* plug in */
-#define PSP_USB_PLUGOUT         		0x2      /* plug out */
+// Plug state of driver
+#define PSP_USB_PLUGIN          		0x1      // plug in
+#define PSP_USB_PLUGOUT         		0x2      // plug out
 
-/* protocol driver */
+// protocol driver
 #define PSP_USB_MAX_DRV_NAM 			32
 
 typedef struct PspUsbDrvInfo {
-	unsigned int size;                        /* size of structure */
-	char         name[PSP_USB_MAX_DRV_NAM];   /* Driver name */
-	int          state;                       /* Plug state */
-	int          reserved[2];                 /* reserved */
+	unsigned int size;                        // size of structure
+	char         name[PSP_USB_MAX_DRV_NAM];   // Driver name
+	int          state;                       // Plug state
+	int          reserved[2];                 // reserved
 } PspUsbDrvInfo;
 
 /**
